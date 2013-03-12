@@ -1,8 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+# flake8: noqa
 
 import os
 import sys
+import json
 
 try:
     from unittest.mock import patch  # python >= 3.3
@@ -30,38 +32,44 @@ class TestDrae:
     @patch(URLOPEN)
     def test_palabra_sonido(self, urlopen_mock):
         urlopen_mock.return_value = open(os.path.join(HERE, 'html', 'drae_palabra_sonido.html')).read()
-        assert self.drae.search('sonido') == [
-            {
-                'etimologia': u' (Del lat. son\u012dtus, por analog\xeda pros\xf3dica con ruido, chirrido, rugido, etc.).',
-                'id': '65959',
-                'definiciones': [
-                    u'  1. m. Sensaci\xf3n producida en el \xf3rgano del o\xeddo por el movimiento vibratorio de los cuerpos, transmitido por un medio el\xe1stico, como el aire.',  # nopep8
-                    u'  2. m. Significaci\xf3n y valor literal que tienen en s\xed las palabras. Estar al sonido de las palabras.',  # nopep8
-                    u'  3. m. Noticia, fama.',
-                    u'  4. m. F\xeds. Vibraci\xf3n mec\xe1nica transmitida por un medio el\xe1stico.', u'  5. m. Fon. Realizaci\xf3n oral de un fonema, constituida por rasgos pertinentes y no pertinentes.',  # nopep8
-                    u'\u25a1 V. ',
-                    u'banda de sonido', 'barrera del sonido', 'cadena de sonido',
-                    u'intensidad del sonido'], 'lema': 'sonido.'
-            }
+        assert self.drae.search('sonido') == json.loads("""
+        [
+          {
+            "etimologia": " (Del lat. son\u012dtus, por analog\u00eda pros\u00f3dica con ruido, chirrido, rugido, etc.).",
+            "id": "65959",
+            "definiciones": [
+              "  1. m. Sensaci\u00f3n producida en el \u00f3rgano del o\u00eddo por el movimiento vibratorio de los cuerpos, transmitido por un medio el\u00e1stico, como el aire.",
+              "  2. m. Significaci\u00f3n y valor literal que tienen en s\u00ed las palabras. Estar al sonido de las palabras.",
+              "  3. m. Noticia, fama.",
+              "  4. m. F\u00eds. Vibraci\u00f3n mec\u00e1nica transmitida por un medio el\u00e1stico.",
+              "  5. m. Fon. Realizaci\u00f3n oral de un fonema, constituida por rasgos pertinentes y no pertinentes.",
+              "\u25a1 V. ",
+              "banda de sonido",
+              "barrera del sonido",
+              "cadena de sonido",
+              "intensidad del sonido"
+            ],
+            "lema": "sonido."
+          }
         ]
+        """)
 
     @patch(URLOPEN)
     def test_palabra_sugerencias(self, urlopen_mock):
         urlopen_mock.return_value = open(os.path.join(HERE, 'html', 'drae_palabra_python.html')).read()
-        assert self.drae.search('python') == {
-            'aviso': u'La palabra python no est\xe1 registrada en el Diccionario. Las que se muestran a continuaci\xf3n tienen formas con una escritura cercana.',  # nopep8
-            'sugerencias': [u'o\xedr.', u'pacho1, cha., pacho2, cha.', u'pach\xf3n, na.', u'pat\xe1n.', u'patao.', u'patear.', u'pateo.', u'pat\xedn1., pat\xedn2.', u'patio.', u'pato-., pato1., pato2.', u'pat\xf3n, na.', u'patr\xf3n, na., patrono, na.', u'payar.', u'pechar1., pechar2., pechar3.', u'pech\xedn.', 'pecho1., pecho2., pecho3.', 'peer.', 'petar1., petar2.', 'peto.', 'piar.', u'pich\xedn.', 'picho.', 'pichoa.', u'pich\xf3n.', 'pichona.', u'pion1, na o pi\xf3n1, na., pion2 o pi\xf3n2.', 'pitao.', 'pitar1., pitar2.', 'pitear.', 'pitio, tia.', 'pito1., pito2., pito3, ta.', u'pit\xf3n1., pit\xf3n2.', 'pleon.', 'pocho, cha.', 'pon.', 'potar1., potar2.', 'potear.', 'poto1., poto2.', 'potro.', 'poyar.', u'prion o pri\xf3n.', 'puar.', 'pucho.', 'putear.', 'puto, ta.', u'put\xf3n.', 'puyar.', 'ton.']  # nopep8
+        assert self.drae.search('python') == json.loads("""
+        {
+          "aviso": "La palabra python no est\\u00e1 registrada en el Diccionario. Las que se muestran a continuaci\\u00f3n tienen formas con una escritura cercana.",
+          "sugerencias": ["o\\u00edr.", "pacho1, cha., pacho2, cha.", "pach\\u00f3n, na.", "pat\\u00e1n.", "patao.", "patear.", "pateo.", "pat\\u00edn1., pat\\u00edn2.", "patio.", "pato-., pato1., pato2.", "pat\\u00f3n, na.", "patr\\u00f3n, na., patrono, na.", "payar.", "pechar1., pechar2., pechar3.", "pech\\u00edn.", "pecho1., pecho2., pecho3.", "peer.", "petar1., petar2.", "peto.", "piar.", "pich\\u00edn.", "picho.", "pichoa.", "pich\\u00f3n.", "pichona.", "pion1, na o pi\\u00f3n1, na., pion2 o pi\\u00f3n2.", "pitao.", "pitar1., pitar2.", "pitear.", "pitio, tia.", "pito1., pito2., pito3, ta.", "pit\\u00f3n1., pit\\u00f3n2.", "pleon.", "pocho, cha.", "pon.", "potar1., potar2.", "potear.", "poto1., poto2.", "potro.", "poyar.", "prion o pri\\u00f3n.", "puar.", "pucho.", "putear.", "puto, ta.", "put\\u00f3n.", "puyar.", "ton."]
         }
+        """)
 
     @patch(URLOPEN)
     def test_palabra_sugerencias_empty(self, urlopen_mock):
         urlopen_mock.return_value = open(os.path.join(HERE, 'html', 'drae_palabra_arco.html')).read()
-        assert self.drae.search('arco') == {
-            'aviso': u'',
-            'sugerencias': [u'arcar.', u'arco.']  # nopep8
-        }
+        assert self.drae.search('arco') == json.loads('{"aviso": "", "sugerencias": ["arcar.", "arco."]}')
 
     @patch(URLOPEN)
     def test_palabra_noexiste(self, urlopen_mock):
         urlopen_mock.return_value = open(os.path.join(HERE, 'html', 'drae_palabra_UnladenSwallow.html')).read()
-        assert self.drae.search('UnladenSwallow') == {'aviso': u' La palabra UnladenSwallow no está en el Diccionario. '}
+        assert self.drae.search('UnladenSwallow') == json.loads('{"aviso": " La palabra UnladenSwallow no est\\u00e1 en el Diccionario. "}')
