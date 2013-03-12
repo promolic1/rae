@@ -1,2 +1,2 @@
-include rae.py
-recursive-include tests
+include rae.py README.rst
+recursive-include tests *.py *.html

@@ -3,8 +3,7 @@
 """
 rae
 ---
-
-Una
+Api para los diccionarios de la Real Academia Española.
 
 """
 
@@ -27,7 +26,7 @@ setup(
     scripts=['rae.py'],
     license='MIT License',
     description='Consutla a la rae',
-    long_description=__doc__,
+    long_description=open('README.rst').read(),
     install_requires=[
         'lxml',
     ],
