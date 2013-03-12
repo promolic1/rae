@@ -2,6 +2,8 @@
 RAE
 ===
 
+.. image:: https://travis-ci.org/marsam/rae.png?branch=master
+
 .. important::
 
     Este paquete no posee ninguna afiliación con la RAE.
