@@ -1,0 +1,9 @@
+*.py[cod]
+MANIFEST
+
+*,cover
+.tox
+.coverage
+.coverage.*
+__pycache__
+junit-*.xml

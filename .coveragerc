@@ -1,0 +1,10 @@
+# vim:set ft=dosini:
+
+[run]
+branch = True
+parallel = True
+
+[report]
+exclude_lines =
+    # Have to re-enable the standard pragma
+    pragma: no cover
