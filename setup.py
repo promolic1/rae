@@ -19,7 +19,7 @@ if sys.version_info >= (3,):
 
 setup(
     name='rae',
-    version='0.0,1',
+    version='0.1',
     author='Mario Rodas',
     author_email='rodasmario2@gmail.com',
     url='https://github.com/marsam/rae',
