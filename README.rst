@@ -2,9 +2,9 @@
 RAE
 ===
 
-.. note:: disclaimer
+.. important::
 
-    
+    Este paquete no posee ninguna afiliación con la RAE.
 
 Una pequeña api para los diccionarios de la `Real Academia Española <http://rae.es/>`_
 
@@ -20,7 +20,7 @@ Una pequeña api para los diccionarios de la `Real Academia Española <http://ra
       'id': '13245',
       'lema': 'calato, ta.'}]
 
-`Diccionario panhispánico de dudas <http://lema.rae.es/dpd/>`_ (soporte parcial).
+`Diccionario panhispánico de dudas <http://lema.rae.es/dpd/>`_. Soporte parcial, devuelve la deficion en el lema.
 
 .. code:: python
 
@@ -35,5 +35,5 @@ Una pequeña api para los diccionarios de la `Real Academia Española <http://ra
 Enlaces
 -------
 
-* `Qué es el Diccionario panhispánico de dudas <http://lema.rae.es/dpd/html/quees.htm>`
+* `Qué es el Diccionario panhispánico de dudas <http://lema.rae.es/dpd/html/quees.htm>`_
 * http://lema.rae.es/drae/html/advertencia.html
