@@ -24,7 +24,7 @@ setup(
     url='https://github.com/marsam/rae',
     py_modules=['rae'],
     license='MIT License',
-    description='Consutla a la rae',
+    description='Consulta la RAE',
     long_description=open('README.rst').read(),
     install_requires=[
         'lxml',
